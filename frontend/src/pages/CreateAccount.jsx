@@ -238,7 +238,7 @@ export const CreateAccount = () => {
                         >
                             <FaUserPlus />
                             {"   "}Create account
-                        </button> or
+                        </button> 
                     </form>
                 </>
             }
