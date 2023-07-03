@@ -4,11 +4,11 @@
   "description": "Final capstone project turning a bad bank into a good one",
   "main": "server.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js",
-    "client": "npm start --prefix frontend",
-    "build": "npm run build --prefix frontend",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+    "start": "node server/server.js",
+    "dev": "nodemon server/server.js",
+    "client": "npm start --prefix client",
+    "build": "npm run build --prefix client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "engines": {
     "npm": "8.x",

@@ -15,15 +15,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/users", require("./routes/userRoutes"));
 
 // Serve frontend
-console.log(`In server.js ${process.env.NODE_ENV} =+=+=+=`.red.underline.bold);
+console.log(`=== In ${process.env.NODE_ENV} environement ===`.red.underline.bold);
 if (
     process.env.NODE_ENV === "production" ||
     process.env.NODE_ENV === "development"
 ) {
-    app.use(express.static(path.join(__dirname, "../frontend/build")));
+    app.use(express.static(path.join(__dirname, "../client/build")));
     app.get("*", (req, res) => {
         res.sendFile(
-            path.resolve(__dirname, "../", "frontend", "build", "index.html")
+            path.resolve(__dirname, "../", "client", "build", "index.html")
         );
     });
 }
