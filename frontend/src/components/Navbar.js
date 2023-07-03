@@ -185,6 +185,30 @@ export const NavBar = () => {
                                             style={PopoverStyle}
                                         >
                                             <Popover.Body>
+                                                Transfer funds to another user.
+                                            </Popover.Body>
+                                        </Popover>
+                                    }
+                                >
+                                    <Nav.Link
+                                        onClick={() => {
+                                            setTitle("Transfer");
+                                        }}
+                                        href="/transfer"
+                                    >
+                                        Transfer
+                                    </Nav.Link>
+                                </OverlayTrigger>
+
+                                <OverlayTrigger
+                                    placement="bottom"
+                                    trigger={["hover", "focus"]}
+                                    overlay={
+                                        <Popover
+                                            id="popover-basic"
+                                            style={PopoverStyle}
+                                        >
+                                            <Popover.Body>
                                                 All user data saved to local
                                                 storage.
                                             </Popover.Body>

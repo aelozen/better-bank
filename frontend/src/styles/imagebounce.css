@@ -1,0 +1,28 @@
+.transfer-page {
+    position: relative;
+    height: 100vh;
+  }
+  
+  .bouncing-image {
+    position: absolute;
+    width: 300px; /* Adjust the size as per your requirement */
+    height: auto;
+    animation: bounce 2s infinite;
+  }
+  
+  @keyframes bounce {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(50px, -50px);
+    }
+    50% {
+      transform: translate(100px, 0);
+    }
+    75% {
+      transform: translate(50px, 50px);
+    }
+  }
+  

@@ -33,12 +33,6 @@ const decodeToken = (token) => {
   return JSON.parse(decodedPayload);
 };
 
-// Get the token from local storage
-const getToken = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  return user ? user.token : null;
-};
-
 // Register a new user
 const register = async (userData) => {
   const secretKey = await fetchSecretKey();
@@ -78,7 +72,6 @@ const login = async (userData) => {
   const response = await axios.post(API_URL + "login", userData, config);
 
   if (response.data) {
-    const { token } = response.data;
     localStorage.setItem("user", JSON.stringify(response.data));
   }
 
@@ -91,10 +84,7 @@ const logout = async () => {
 };
 
 // Update balance
-const updateBalance = async (userData) => {
-  const token = getToken();
-
-  console.log('Token', token);
+const updateBalance = async (userData, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -111,8 +101,7 @@ const updateBalance = async (userData) => {
 };
 
 // Delete user
-const deleteUser = async (userId) => {
-  const token = getToken();
+const deleteUser = async (userId, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,

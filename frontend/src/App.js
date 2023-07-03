@@ -10,6 +10,7 @@ import { Withdraw } from "./pages/Withdraw";
 import { Login } from "./pages/Login";
 import { UserData } from "./pages/UserData";
 import { Balance } from "./pages/Balance.jsx";
+import { Transfer } from "./pages/Transfer.jsx";
 // import { Footer } from "./components/partials/footer.jsx";
 import { MDBFooter, MDBContainer, MDBBtn} from 'mdb-react-ui-kit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -28,7 +29,8 @@ function App() {
                     <Route path="/login" element={<Login />} />
                     <Route path="/deposit" element={<Deposit />} />
                     <Route path="/withdraw" element={<Withdraw />} />
-                    <Route path="/balance" element={<Balance />} />
+                    <Route path="/balance" element={<Balance />} />                    
+                    <Route path="/transfer" element={<Transfer />} />
                     <Route path="/userdata" element={<UserData />} />
                 </Routes>
                 <MDBFooter className='bg-light text-center text-white'>

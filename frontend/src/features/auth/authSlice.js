@@ -69,7 +69,6 @@ export const updateBalance = createAsyncThunk(
     async (userData, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token;
-            console.log('Token authSlice', token);
             return await authService.updateBalance(userData, token);
         } catch (error) {
             const message =
@@ -78,7 +77,7 @@ export const updateBalance = createAsyncThunk(
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
-            return thunkAPI.rejectWithValue(message);
+            thunkAPI.rejectWithValue(message);
         }
     }
 );
@@ -117,7 +116,7 @@ export const deleteUser = createAsyncThunk(
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
-            thunkAPI.rejectWithValue(message);
+            return thunkAPI.rejectWithValue(message);
         }
     }
 );
@@ -160,8 +159,7 @@ export const authSlice = createSlice({
                 state.isSuccess = true;
                 state.user = {
                     ...action.payload,
-                    account:action.payload.account
-                };
+                    account:action.payload.account};
             })
             .addCase(login.rejected, (state, action) => {
                 state.isLoading = false;
