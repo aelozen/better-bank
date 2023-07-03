@@ -3,13 +3,6 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 
 const protect = asyncHandler(async (req, res, next) => {
-    // Exclude '/api/users/secretKey' endpoint from authentication
-    if (req.path === "/secretKey" ||
-        req.path === "/upload-image") {
-        next(); // Skip authentication middleware
-        return;
-    }
-
     let token;
 
     if (
@@ -23,12 +16,8 @@ const protect = asyncHandler(async (req, res, next) => {
             // Verify token
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-            // Get user from token
+            // Get user from tokem
             req.user = await User.findById(decoded.id).select("-password");
-
-            // Set the secret key on the request object
-            req.secretKey = process.env.JWT_SECRET;
-
             next();
         } catch (error) {
             res.status(401);
@@ -43,5 +32,5 @@ const protect = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = {
-  protect,
+    protect,
 };

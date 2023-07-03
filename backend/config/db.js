@@ -8,7 +8,7 @@ const connectDB = async () => {
 
         console.log(`MONGO_URI: ${process.env.MONGO_URI}`.green.underline.bold);
         console.log(
-            `Connected to MongoDB: ${conn.connection.host}`.cyan.underline.bold
+            `MongoDB Connected: ${conn.connection.host}`.cyan.underline.bold
         );
     } catch (error) {
         console.log(error);

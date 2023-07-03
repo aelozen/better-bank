@@ -4,7 +4,7 @@ const cors = require("cors");
 const { errorHandler } = require("./middleware/errorMiddleware");
 const connectDB = require("./config/db");
 const colors = require("colors");
-require("dotenv").config();
+const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
 
 connectDB();
@@ -20,12 +20,6 @@ app.use(
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-// Middleware to set secret key
-app.use((req, res, next) => {
-  req.secretKey = process.env.JWT_SECRET;
-  next();
-});
 
 app.use("/api/users", require("./routes/userRoutes"));
 

@@ -1,22 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
-const path = require("path");
-const multer = require("multer");
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads"); // Specify the upload directory
-  },
-  filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    const extension = path.extname(file.originalname);
-    cb(null, uniqueSuffix + extension);
-  },
-});
-
-const upload = multer({ storage });
-
 const User = require("../models/userModel");
 
 // @desc Authenticate user
@@ -33,7 +17,6 @@ const loginUser = asyncHandler(async (req, res) => {
   // Check for user email
   const user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
-    const token = generateToken(user._id, user.admin, process.env.JWT_SECRET);
     res.json({
       _id: user._id,
       name: user.name,
@@ -42,8 +25,7 @@ const loginUser = asyncHandler(async (req, res) => {
       account: user.account,
       balance: user.balance,
       admin: user.admin,
-      image: user.image,
-      token: token,
+      token: generateToken(user._id),
     });
   } else {
     res.status(400);
@@ -64,7 +46,7 @@ const getMe = asyncHandler(async (req, res) => {
 const createUser = asyncHandler(async (req, res) => {
   const { name, email, password, account } = req.body;
 
-  if (!name || !email || !password || !account) {
+  if (!name || !email || !password) {
     res.status(400);
     throw new Error("Please enter all fields.");
   }
@@ -86,7 +68,6 @@ const createUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    const token = generateToken(user._id, user.admin, process.env.JWT_SECRET);
     res.status(201).json({
       _id: user._id,
       name: user.name,
@@ -95,7 +76,7 @@ const createUser = asyncHandler(async (req, res) => {
       account: user.account,
       admin: user.admin,
       image: user.image,
-      token: token,
+      token: generateToken(user._id),
     });
   } else {
     res.status(400);
@@ -126,73 +107,41 @@ const deleteUser = asyncHandler(async (req, res) => {
 const updateUser = async (req, res) => {
     const { id, email, balance } = req.body;
   
-    if (!email || !balance) {
-      res.status(400).json({ message: "Please enter a value for email and balance" });
-      return;
-    }
+    if (!req.body) {
+      res.status(400);
+      throw new Error("Please enter a value");
+  }
   
-    try {
       // Get user by ID
       const user = await User.findById(req.params.id);
-  
+
       if (!user) {
-        res.status(404).json({ message: "User not found" });
-        return;
+          res.status(404);
+          throw new Error("User not found");
       }
   
       // Update user
-      user.email = email;
-      user.balance = balance;
-
-      if (req.file) {
-        user.image = req.file.path;
-      }
-
-      await user.save();
-  
-      res.status(200).json({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        balance: user.balance,
-        account: user.account,
-        admin: user.admin,
-        image: user.image,
+      await User.findByIdAndUpdate(req.params.id, req.body, {
+        new: true,
       });
-    } catch (error) {
-      console.error("Error updating user:", error);
-      res.status(500).json({ message: "Failed to update user" });
-    }
-  };  
 
-// @desc Upload user image
-// @route POST /api/users/upload-image
-// @access Private
-const uploadImage = upload.single("image");
-const handleImageUpload = async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id);
-
-    if (!user) {
-      res.status(404).json({ message: "User not found" });
-      return;
-    }
-
-    // Update the user's image field with the file path or other relevant information
-    user.image = req.file.path; // Assuming the file path is saved to the `path` property of the uploaded file
-
-    await user.save();
-
-    res.status(200).json({ message: "Image uploaded successfully" });
-  } catch (error) {
-    console.error("Error uploading image:", error);
-    res.status(500).json({ message: "Image upload failed" });
-  }
-};
+    const updatedUser = await User.findById(req.params.id);
+  
+      res.status(201).json({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        balance: updatedUser.balance,
+        account: updatedUser.account,
+        admin: updatedUser.admin,
+        image: user.image,
+        token: generateToken(user._id),
+      });
+    }; 
 
 // Generate JWT
-const generateToken = (id, admin, secretKey) => {
-    return jwt.sign({ id, admin }, secretKey, {
+const generateToken = (id, admin) => {
+    return jwt.sign({ id, admin }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN,
     });
 };
@@ -202,7 +151,5 @@ module.exports = {
     getMe,
     createUser,
     updateUser,
-    uploadImage,
-    handleImageUpload,
     deleteUser,
 };
