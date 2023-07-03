@@ -1,12 +1,11 @@
 const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
-require("dotenv").config();
 
 const protect = asyncHandler(async (req, res, next) => {
     // Exclude '/api/users/secretKey' endpoint from authentication
-    if (req.path === "/api/users/secretKey" ||
-        req.path === "/api/users/upload-image") {
+    if (req.path === "/secretKey" ||
+        req.path === "/upload-image") {
         next(); // Skip authentication middleware
         return;
     }

@@ -2,7 +2,6 @@ const errorHandler = (err, req, res, next) => {
     const statusCode = res.statusCode ? res.statusCode : 500;
 
     console.error(err); // Log the error to the console for debugging
-
     res.status(statusCode);
 
     res.json({

@@ -14,7 +14,7 @@ const {
 const { protect } = require("../middleware/authMiddleware");
 
 // GET secret key
-router.get('/secretKey', (req, res) => {
+router.get("/secretKey", (req, res) => {
   const secretKey = process.env.JWT_SECRET;
   res.json({ secretKey });
 });
@@ -22,7 +22,7 @@ router.get('/secretKey', (req, res) => {
 // Define routes
 router.post("/login", asyncHandler(loginUser));
 router.get("/me", protect, asyncHandler(getMe));
-router.post("/", asyncHandler(createUser));
+router.post("/"), asyncHandler(createUser);
 router.post("/upload-image", protect, uploadImage, asyncHandler(handleImageUpload));
 router.put("/:id", protect, asyncHandler(updateUser));
 router.delete("/:id", protect, asyncHandler(deleteUser));

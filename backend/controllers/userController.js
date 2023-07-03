@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const path = require("path");
 const multer = require("multer");
-require("dotenv").config();
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

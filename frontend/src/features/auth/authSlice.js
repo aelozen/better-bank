@@ -69,6 +69,7 @@ export const updateBalance = createAsyncThunk(
     async (userData, thunkAPI) => {
         try {
             const token = thunkAPI.getState().auth.user.token;
+            console.log('Token authSlice', token);
             return await authService.updateBalance(userData, token);
         } catch (error) {
             const message =
@@ -77,7 +78,7 @@ export const updateBalance = createAsyncThunk(
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
-            thunkAPI.rejectWithValue(message);
+            return thunkAPI.rejectWithValue(message);
         }
     }
 );
@@ -140,7 +141,10 @@ export const authSlice = createSlice({
             .addCase(register.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.user = action.payload;
+                state.user = {
+                    ...action.payload,
+                    account: action.payload.account
+                };
             })
             .addCase(register.rejected, (state, action) => {
                 state.isLoading = false;
@@ -154,7 +158,10 @@ export const authSlice = createSlice({
             .addCase(login.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.user = action.payload;
+                state.user = {
+                    ...action.payload,
+                    account:action.payload.account
+                };
             })
             .addCase(login.rejected, (state, action) => {
                 state.isLoading = false;
@@ -197,7 +204,6 @@ export const authSlice = createSlice({
             .addCase(uploadImage.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                // Optionally, you can update the user's image in the state here
                 state.user.image = action.payload.image;
             })
             .addCase(uploadImage.rejected, (state, action) => {
