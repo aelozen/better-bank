@@ -9,7 +9,6 @@ import { FaSignOutAlt, FaUserPlus } from "react-icons/fa";
 import { UseCard } from "../components/partials/UseCard";
 import { capitalize } from "../features/capitalize";
 import { generateRandomAccountNumber } from "../utils/utils";
-import { GoogleOAuth } from '@react-oauth/google';
 
 const passWrap = {
     display: "flex",
@@ -121,24 +120,16 @@ export const CreateAccount = () => {
             !validate(email, "Email") ||
             !validate(password, "Password")
         )
-        return;
-        const isOAuthUser = true;
-        if (isOAuthUser) {
-            //Handle OAuth2 user creation
-            //Send oAuth2 user data to your backend for use
-
-        } else {
+            return;
         dispatch(register(userData));
-        toast.success("Your account has been created successfully!", {
+        toast.success("Your account has been successfully created!", {
             position: "top-right",
             autoClose: 2000,
             closeOnClick: true,
             pauseOnHover: false,
             pauseOnFocusLoss: false,
         });
-        };
     };
-
     const togglePass = () => {
         console.log(isError);
         setShowPass(showPass ? false : true);
