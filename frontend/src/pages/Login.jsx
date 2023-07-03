@@ -7,7 +7,6 @@ import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 import { UseCard } from "../components/partials/UseCard";
 import { capitalize } from "../features/capitalize";
 import { Spinner } from "react-bootstrap";
-import { GoogleButton } from 'react-google-button';
 
 const passWrap = {
     display: "flex",
@@ -173,13 +172,9 @@ export const Login = () => {
                         </div>
                     </div>
                     <br />
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <button type="submit" className="btn btn-outline-success">
+                    <button type="submit" className="btn btn-outline-success">
                         <FaSignInAlt /> Log In
-                    </button> OR  
-                        <GoogleButton onClick={() => {console.log("Google sign in clicked")}} style={{ width: '200px', height: '50px', fontSize: '17px'}}>
-                        Sign in with Google </GoogleButton>
-                        </div>
+                    </button>
                 </form>
             }
         />

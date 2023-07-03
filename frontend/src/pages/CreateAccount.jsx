@@ -5,11 +5,10 @@ import { toast } from "react-toastify";
 import { register, reset, logout } from "../features/auth/authSlice";
 import Spinner from "../components/Spinner";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt, FaUserPlus } from "react-icons/fa";
 import { UseCard } from "../components/partials/UseCard";
 import { capitalize } from "../features/capitalize";
 import { generateRandomAccountNumber } from "../utils/utils";
-import { GoogleButton } from 'react-google-button';
 import { GoogleOAuth } from '@react-oauth/google';
 
 const passWrap = {
@@ -242,13 +241,13 @@ export const CreateAccount = () => {
                             </div>
                         </div>
                         <br />
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                        <button className="btn btn-outline-success" onClick={handleSubmit}>
-                        Create Account
-                        </button>  OR  
-                        <GoogleButton onClick={() => {console.log("Google sign in clicked")}} style={{ width: '200px', height: '50px', fontSize: '17px'}}>
-                        Sign in with Google </GoogleButton>
-                        </div>
+                        <button
+                            type="submit"
+                            className="btn btn-outline-success"
+                        >
+                            <FaUserPlus />
+                            {"   "}Create account
+                        </button> or
                     </form>
                 </>
             }
