@@ -20,7 +20,7 @@ This is my capstone project for the September 2022 MIT xPro Full Stack with MERN
 
 ## How To Use
 
-This app allows you to create a user and deposit, withdraw, view your balance, and view your user data. It has full authorization and authentication functionality so that users must create an account or login to view the banks funcitonality. Additional functionality I have aded is the Avatar image upload, creation of a random account number for new accounts, and for users to be able to delete their own accounts. Note that while data is persistent across user login/logouts, the Avatar images are not due to size in database. 
+This app allows you to create a user and deposit, withdraw, view your balance, and view your user data. It has full authorization and authentication functionality so that users must create an account or login to view the banks funcitonality. Additional functionality I have aded is the Avatar image upload, creation of a random account number for new accounts, and for users to be able to delete their own accounts. Note that while data is persistent across user login/logouts, the Avatar images are not due to their size in the database. 
 
 ## Future Possibilities
 
@@ -29,7 +29,7 @@ This app allows you to create a user and deposit, withdraw, view your balance, a
 -   [X] Create random account number for new accounts
 -   [X] Upload Avatar for profile 
 -   [ ] Add transfers to another user functionality
--   [ ] Add different account types (checking/saving)
+-   [ ] Add different account types (checking/saving) and transfers between
 
 ## MIT License
 
