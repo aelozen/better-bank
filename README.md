@@ -1,5 +1,7 @@
 # better-bank
 
+<img width="350" alt="Screenshot 2023-07-02 at 10 12 34 PM" src="https://github.com/aelozen/better-bank/assets/115373521/246ad07f-4615-4d0b-a42b-18a4dc645cc3">
+
 ## About
 
 This is my capstone project for the September 2022 MIT xPro Full Stack with MERN Coding Program: Women's Cohort. This Full Stack Better Bank application was created in React Redux using Node and Express to interact with a MongoDB Atlas database modeled using Mongoose, authentication through JWT. I am currently working on my application presentations that I will add on YouTube and link in the footer when available.
