@@ -1,7 +1,7 @@
 import axios from "axios";
 import { generateRandomAccountNumber } from "../../utils/utils";
 
-const API_URL = "http://localhost:4000/api/users/";
+const API_URL = "/api/users/";
 
 // Fetch the secret key from the backend
 const fetchSecretKey = async () => {
