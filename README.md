@@ -1,35 +1,45 @@
-# better-bank
-
-<img width="350" alt="Screenshot 2023-07-02 at 10 12 34 PM" src="https://github.com/aelozen/better-bank/assets/115373521/246ad07f-4615-4d0b-a42b-18a4dc645cc3">
+# better-bank-dev
+This is the `dev` branch of my better-bank application repository. This branch contains ongoing development work and may include new features, bug fixes, or other changes that are being actively developed.
 
 ## About
+The better-bank application is a full-stack web application built using MongoDB, Express.js, React.js, and Node.js. It provides a user interface for managing and displaying data from an example banking database.
 
-This is my capstone project for the September 2022 MIT xPro Full Stack with MERN Coding Program: Women's Cohort. This Full Stack Better Bank application was created in React Redux using Node and Express to interact with a MongoDB Atlas database modeled using Mongoose, authentication through JWT. I am currently working on my application presentations that I will add on YouTube and link in the footer when available.
-
-## Technologies and Skills Used
+## Features (Dev Branch)
 
 <ul>
-  <li> HTML, CSS, JavaScript
-  <li> React, Redux, React Router
-  <li> Node, Express, Axios
-  <li> MongoDB, Mongoose
-  <li> Bootstrap, Toastify, React Icons
-  <li> JSON Web Tokens
-  <li> Input validation and error handling.
+  <li> Admin: A user can login with the administrative email and password to view all users and delete accounts. 
+  <li> Transfers: A user can transfer money to another user with their account number.  
+  <li> Account Type: A user can select if they would like to make a deposit in their checking or savings account. 
 </ul>
 
-## How To Use
+## Installation
 
-This app allows you to create a user and deposit, withdraw, view your balance, and view your user data. It has full authorization and authentication functionality so that users must create an account or login to view the banks funcitonality. Additional functionality I have added is the Avatar image upload, creation of a random account number for new accounts, and for users to be able to delete their own accounts. I have also added the Transfer page, which is currently under construction. Note that while data is persistent across user login/logouts, the Avatar images are not due to their size in the database. 
+To run this better-bank application locally on your machine, follow these steps. 
 
-## Future Possibilities
+1. Clone the repository:
 
--   [ ] Add admin functionality
--   [X] Allow users to delete account
--   [X] Create random account number for new accounts
--   [X] Upload Avatar for profile 
--   [ ] Add transfers to another user functionality
--   [ ] Add different account types (checking/saving) and transfers between
+   ```bash
+    git clone git@github.com:aelozen/better-bank.git
+
+2. Install dependencies:
+    cd better-bank-dev
+    npm install
+
+3. Configure the environment variables:
+<ul>
+  <li> Create a `.env` file in the root directory
+  <li> Provide the necessary environment variables (MongoDB connection URL, API keys, etc.) 
+
+4. Start the development server:
+    npm run start
+
+## Contributing
+
+I welcome contributions to my better-bank application. If you would like to contribute, please follow these guidelines:
+1. Fork the repository
+2. Create a new branch based on the `dev` branch
+3. Make your changes and test them thoroughly
+4. Submit a pull request explaining the changes you have made.
 
 ## MIT License
 
