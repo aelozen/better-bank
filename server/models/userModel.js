@@ -36,6 +36,11 @@ const userSchema = new mongoose.Schema(
         timestamps: true,
     }
 );
+// // Method to update user's balance
+// userSchema.methods.updateBalance = async function (amount) {
+//     this.balance += amount;
+//     await this.save();
+// };
 
 const User = mongoose.model("User", userSchema);
 

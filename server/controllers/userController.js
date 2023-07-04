@@ -139,6 +139,48 @@ const updateUser = async (req, res) => {
       });
     }; 
 
+// // Initiate transfer
+// const transferMoney = async (req, res) => {
+//   const { senderId, receiverAccountNumber, amount } = req.body;
+
+//   try {
+//     // Find the sender user by their ID
+//     const sender = await User.findById(senderId);
+
+//     if (!sender) {
+//       res.status(404).json({ message: "Sender not found" });
+//       return;
+//     }
+
+//     // Find the receiver user by their account number
+//     const receiver = await User.findOne({ accountNumber: receiverAccountNumber });
+
+//     if (!receiver) {
+//       res.status(404).json({ message: "Receiver not found" });
+//       return;
+//     }
+
+//     // Check if the sender has enough balance to transfer
+//     if (sender.balance < amount) {
+//       res.status(400).json({ message: "Insufficient balance for the transfer" });
+//       return;
+//     }
+
+//     // Update the sender's balance
+//     sender.balance -= amount;
+//     await sender.save();
+
+//     // Update the receiver's balance
+//     receiver.balance += amount;
+//     await receiver.save();
+
+//     res.status(200).json({ message: "Money transferred successfully" });
+//   } catch (error) {
+//     console.error("Error transferring money:", error);
+//     res.status(500).json({ message: "Failed to transfer money" });
+//   }
+// };
+
 // Generate JWT
 const generateToken = (id, admin) => {
     return jwt.sign({ id, admin }, process.env.JWT_SECRET, {
@@ -152,4 +194,5 @@ module.exports = {
     createUser,
     updateUser,
     deleteUser,
+    // transferMoney,
 };

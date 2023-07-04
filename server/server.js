@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/users", require("./routes/userRoutes"));
 
 // Serve frontend
-console.log(`=== In ${process.env.NODE_ENV} environement ===`.red.underline.bold);
+console.log(`=== In ${process.env.NODE_ENV} environment ===`.red.underline.bold);
 if (
     process.env.NODE_ENV === "production" ||
     process.env.NODE_ENV === "development"
