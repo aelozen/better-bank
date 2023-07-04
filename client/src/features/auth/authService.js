@@ -114,6 +114,16 @@ const deleteUser = async (userId, token) => {
 };
 
 // Transfer money
+const transfer = async (transferData, token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.put(API_URL + "transfer", transferData, config);
+
+  return response.data;
+}
 
 
 const authService = {
@@ -123,6 +133,7 @@ const authService = {
   updateBalance,
   deleteUser,
   isTokenExpired,
+  transfer,
 };
 
 export default authService;
