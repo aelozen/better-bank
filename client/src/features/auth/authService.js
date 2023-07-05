@@ -113,6 +113,23 @@ const deleteUser = async (userId, token) => {
   return response.data;
 };
 
+const transfer = async (transferData, token,) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    console.log("This is the transfer data" , transferData);
+    console.log('config:', config);
+
+    const response = await axios.put(API_URL + "transfer", transferData, config);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const authService = {
   register,
   logout,
@@ -120,6 +137,7 @@ const authService = {
   updateBalance,
   deleteUser,
   isTokenExpired,
+  transfer,
 };
 
 export default authService;

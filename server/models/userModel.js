@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema(
         account: {
             type: String,
             default: false,
+            unique: true,
         },
         admin: {
             type: Boolean,
@@ -36,6 +37,11 @@ const userSchema = new mongoose.Schema(
         timestamps: true,
     }
 );
+// // Method to update user's balance
+// userSchema.methods.updateBalance = async function (amount) {
+//     this.balance += amount;
+//     await this.save();
+// };
 
 const User = mongoose.model("User", userSchema);
 
