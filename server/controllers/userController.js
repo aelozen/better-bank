@@ -159,12 +159,12 @@ const transferMoney = async (req, res) => {
 
     // Find the receiver user by their account number
     const receivers = await User.find({ account: receiverAccountNumber });
+    console.log('Receiver account', receiverAccountNumber)
     if (receivers.length === 0) {
        res.status(404).json({ message: "Receiver not found" });
     return;
       }
 const receiver = receivers[0]; // Choose the first receiver found
-
 
     if (!receiver) {
       res.status(404).json({ message: "Receiver not found" });
