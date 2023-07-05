@@ -6,6 +6,22 @@ import { capitalize } from '../features/capitalize';
 import { updateBalance } from '../features/auth/authSlice';
 import { transfer } from '../features/auth/authSlice';
 
+const DevelopmentBanner = () => {
+  const bannerStyles = {
+    backgroundColor: '#f8d7da',
+    color: '#721c24',
+    padding: '10px',
+    textAlign: 'center',
+    font: 'Arial',
+    fontSize: '20px',
+  };
+  return(
+    <div style={bannerStyles}>
+            <p>NOTE: This page is under development. Come back later to transfer funds to another user.</p>
+      </div>
+  )
+}
+
 export const Transfer = () => {
   console.log("beginning of transfer");
   const [accountNumber, setAccountNumber] = useState('');
@@ -102,6 +118,7 @@ export const Transfer = () => {
 
   return (
     <div className="transfer-page">
+      <DevelopmentBanner/>
       <UseCard
         bgcolor="success"
         opacity="10"
@@ -122,7 +139,7 @@ export const Transfer = () => {
                   ref={receiverAccountNumberRef}
                   onChange={(e) => {
                     setAccountNumber(e.currentTarget.value);
-                    setDisabled(false);
+                    setDisabled(true);
                   }}
                 />
                 <input
@@ -134,7 +151,7 @@ export const Transfer = () => {
                   value={transferAmount}
                   onChange={(e) => {
                     setTransferAmount(e.currentTarget.value);
-                    setDisabled(false);
+                    setDisabled(true);
                   }}
                 />
                 <button
