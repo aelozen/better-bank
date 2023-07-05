@@ -173,6 +173,7 @@ export const CreateAccount = () => {
             />
         </>
     ) : (
+        <div>
         <UseCard
             bgcolor="success"
             opacity="10"
@@ -243,5 +244,26 @@ export const CreateAccount = () => {
                 </>
             }
         />
+        <UseCard
+            bgcolor="success"
+            opacity="10"
+            header={<>Already have an account?</>}
+            body={
+            <>
+                <form>
+                    <br />
+                    <button
+                        type="button"
+                        className="btn btn-outline-success"
+                        onClick={() => navigate("/login")}
+                    >
+                        <FaUserPlus />
+                        {"   "}Login
+                    </button> 
+                </form>
+             </>
+            }
+        />
+        </div>
     );
 };
