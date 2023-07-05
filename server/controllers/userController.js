@@ -139,47 +139,58 @@ const updateUser = async (req, res) => {
       });
     }; 
 
-// // Initiate transfer
-// const transferMoney = async (req, res) => {
-//   const { senderId, receiverAccountNumber, amount } = req.body;
+// Initiate transfer
+const transferMoney = async (req, res) => {
+  console.log('before req.body');
+  const { senderId, receiverAccountNumber, amount } = req.body;
+  console.log('req body', req.body);
+  console.log("This is the senderID" + senderId);
+  console.log("This is the receiverAccountNumber" + receiverAccountNumber);
+  console.log("This is the amount" + amount);
 
-//   try {
-//     // Find the sender user by their ID
-//     const sender = await User.findById(senderId);
+  try {
+    // Find the sender user by their ID
+    const sender = await User.findById(senderId);
 
-//     if (!sender) {
-//       res.status(404).json({ message: "Sender not found" });
-//       return;
-//     }
+    if (!sender) {
+      res.status(404).json({ message: "Sender not found" });
+      return;
+    }
 
-//     // Find the receiver user by their account number
-//     const receiver = await User.findOne({ accountNumber: receiverAccountNumber });
+    // Find the receiver user by their account number
+    const receivers = await User.find({ account: receiverAccountNumber });
+    if (receivers.length === 0) {
+       res.status(404).json({ message: "Receiver not found" });
+    return;
+      }
+const receiver = receivers[0]; // Choose the first receiver found
 
-//     if (!receiver) {
-//       res.status(404).json({ message: "Receiver not found" });
-//       return;
-//     }
 
-//     // Check if the sender has enough balance to transfer
-//     if (sender.balance < amount) {
-//       res.status(400).json({ message: "Insufficient balance for the transfer" });
-//       return;
-//     }
+    if (!receiver) {
+      res.status(404).json({ message: "Receiver not found" });
+      return;
+    }
 
-//     // Update the sender's balance
-//     sender.balance -= amount;
-//     await sender.save();
+    // Check if the sender has enough balance to transfer
+    if (sender.balance < amount) {
+      res.status(400).json({ message: "Insufficient balance for the transfer" });
+      return;
+    }
 
-//     // Update the receiver's balance
-//     receiver.balance += amount;
-//     await receiver.save();
+    // Update the sender's balance
+    sender.balance -= amount;
+    await sender.save();
 
-//     res.status(200).json({ message: "Money transferred successfully" });
-//   } catch (error) {
-//     console.error("Error transferring money:", error);
-//     res.status(500).json({ message: "Failed to transfer money" });
-//   }
-// };
+    // Update the receiver's balance
+    receiver.balance += amount;
+    await receiver.save();
+
+    res.status(200).json({ message: "Money transferred successfully" });
+  } catch (error) {
+    console.error("Error transferring money:", error);
+    res.status(500).json({ message: "Failed to transfer money" });
+  }
+};
 
 // Generate JWT
 const generateToken = (id, admin) => {
@@ -194,5 +205,5 @@ module.exports = {
     createUser,
     updateUser,
     deleteUser,
-    // transferMoney,
+    transferMoney,
 };

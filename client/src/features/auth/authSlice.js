@@ -125,8 +125,10 @@ export const deleteUser = createAsyncThunk(
 export const transfer = createAsyncThunk(
     "auth/transfer",
     async (transferData, thunkAPI) => {
+        console.log("i am reaching the api next")
       try {
         const token = thunkAPI.getState().auth.user.token;
+        console.log('thunkAPI token', thunkAPI.getState().auth.user.token);
         return await authService.transfer(transferData, token);
       } catch (error) {
         const message =
@@ -136,7 +138,7 @@ export const transfer = createAsyncThunk(
           error.message ||
           error.toString();
         return thunkAPI.rejectWithValue(message);
-      }
+        }
     }
   );
 
@@ -230,17 +232,17 @@ export const authSlice = createSlice({
             })
             .addCase(transfer.pending, (state) => {
                 state.isLoading = true;
-              })
-              .addCase(transfer.fulfilled, (state, action) => {
+            })
+            .addCase(transfer.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
                 state.user = action.payload;
-              })
-              .addCase(transfer.rejected, (state, action) => {
+            })
+            .addCase(transfer.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;
-              });          
+            });          
     },
 });
 

@@ -113,18 +113,22 @@ const deleteUser = async (userId, token) => {
   return response.data;
 };
 
-// Transfer money
-const transfer = async (transferData, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  const response = await axios.put(API_URL + "transfer", transferData, config);
+const transfer = async (transferData, token,) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    console.log("This is the transfer data" , transferData);
+    console.log('config:', config);
 
-  return response.data;
-}
-
+    const response = await axios.put(API_URL + "transfer", transferData, config);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 const authService = {
   register,

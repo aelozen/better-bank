@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema(
         account: {
             type: String,
             default: false,
+            unique: true,
         },
         admin: {
             type: Boolean,
