@@ -188,7 +188,6 @@ export const Login = () => {
             body={
             <>
                 <form>
-                    <br />
                     <button
                         type="button"
                         className="btn btn-outline-success"
