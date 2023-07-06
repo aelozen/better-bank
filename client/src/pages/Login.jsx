@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import { FaSignInAlt, FaSignOutAlt, FaUserPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { login, logout, reset } from "../features/auth/authSlice";
@@ -28,6 +29,7 @@ export const Login = () => {
 
     const { email, password } = formData;
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const { user, isError, isLoading, message } = useSelector(
@@ -126,6 +128,7 @@ export const Login = () => {
             />
         </>
     ) : (
+        <div>
         <UseCard
             bgcolor="success"
             opacity="10"
@@ -178,5 +181,26 @@ export const Login = () => {
                 </form>
             }
         />
+        <UseCard
+            bgcolor="success"
+            opacity="10"
+            header={<>Need to make an account?</>}
+            body={
+            <>
+                <form>
+                    <br />
+                    <button
+                        type="button"
+                        className="btn btn-outline-success"
+                        onClick={() => navigate("/account")}
+                    >
+                        <FaUserPlus />
+                        {"   "}Create Account
+                    </button> 
+                </form>
+             </>
+            }
+        />
+        </div>
     );
 };
