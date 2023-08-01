@@ -11,9 +11,10 @@ import { Login } from "./pages/Login";
 import { UserData } from "./pages/UserData";
 import { Balance } from "./pages/Balance.jsx";
 import { Transfer } from "./pages/Transfer.jsx";
-import { MDBFooter, MDBContainer, MDBBtn} from 'mdb-react-ui-kit';
+import { MDBFooter, MDBContainer} from 'mdb-react-ui-kit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube, faLinkedinIn, faGithub } from '@fortawesome/free-brands-svg-icons';
+import "./styles/app.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -38,44 +39,41 @@ function App() {
       </div>
       <MDBContainer className='p-4 pb-0'>
         <section className='mb-4'>
-        <MDBBtn
+        <button
           floating
-          className="m-1"
-          style={{ backgroundColor: 'red' }}
+          className="circular-btn"
+          style={{ backgroundColor: 'danger' }}
           href="#!"
-          role="button"
           disableRipple
         >
           <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faYoutube} />
           </a>
-        </MDBBtn>
+        </button>
 
-        <MDBBtn
+        <button
           floating
-          className="m-1"
-          style={{ backgroundColor: '#0082ca' }}
+          className="circular-btn"
+          style={{ backgroundColor: 'primary' }}
           href="https://www.linkedin.com/in/alexandra-gross-612702274/"
-          role="button"
           disableRipple
         >
           <a href="https://www.linkedin.com/in/alexandra-gross-612702274/" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faLinkedinIn} />
           </a>
-        </MDBBtn>
+        </button>
 
-        <MDBBtn
+        <button
           floating
-          className="m-1"
-          style={{ backgroundColor: '#333333' }}
+          className="circular-btn"
+          style={{ backgroundColor: 'dark' }}
           href="https://github.com/aelozen/better-bank"
-          role="button"
           disableRipple
         >
           <a href="https://github.com/aelozen/better-bank" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faGithub} />
           </a>
-        </MDBBtn>
+        </button>
         </section>
       </MDBContainer>
 
