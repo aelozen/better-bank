@@ -67,10 +67,10 @@ function App() {
           floating
           className="circular-btn"
           style={{ backgroundColor: 'dark' }}
-          href="https://github.com/aelozen/better-bank"
+          href="https://github.com/luneboots/better-bank"
           disableRipple
         >
-          <a href="https://github.com/aelozen/better-bank" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/luneboots/better-bank" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faGithub} />
           </a>
         </button>
@@ -78,7 +78,7 @@ function App() {
       </MDBContainer>
 
       <div className='text-center p-3' style={{ backgroundColor: 'indianred' }}>
-        © 2023 Copyright: aelozen
+        © 2023 Copyright: luneboots
         {/* <a className='text-white' href='https://mdbootstrap.com/'>
           MDBootstrap.com remember to add opening in another page
         </a> */}
